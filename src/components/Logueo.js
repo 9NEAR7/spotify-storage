@@ -1,43 +1,59 @@
 import React, {useState} from 'react'
 import { Container, Stack, Form, Button } from 'react-bootstrap';
+import firebaseApp from '../credenciales';
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth"
 
-
-
+const auth = getAuth(firebaseApp);
 
 export const Logueo = () => {
 
   const [estaRegistrandose, setEstaRegistrandose] = useState(false);
 
+  async function submitHandler(e){
+    e.preventDefault();
+    const correo = e.target.formBasicEmail.value;
+    const contra = e.target.formBasicPassword.value;
+    console.log(correo,contra);
+
+    
+    if(estaRegistrandose){
+      //si se registra
+      const usuario = await createUserWithEmailAndPassword(auth, correo, contra);
+    }else{
+      //si esta iniciando sesión
+      signInWithEmailAndPassword(auth, correo, contra);
+    }
+
+    
+  } 
+
   return (
     <Container>
       <Stack gap={3}>
         <h1>{estaRegistrandose ? "Regístrate" : "Inicia Sesión"}</h1>
-      <Form>
+      <Form onSubmit={submitHandler}>
   <Form.Group className="mb-3" controlId="formBasicEmail">
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
+   
   </Form.Group>
 
   <Form.Group className="mb-3" controlId="formBasicPassword">
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" />
   </Form.Group>
-  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
+ 
   <Button variant="primary" type="submit">
     {estaRegistrandose ? "Regístrate" : "Inicia Sesión"}
   </Button>
 </Form>
 
-<Button variant="primary" type="submit">
+<Button variant="primary" type="submit" style={{ width: "300px" }}>
     Acceder con Google
   </Button>
 
-  <Button variant="primary" type="submit" onClick = {()=> setEstaRegistrandose(!estaRegistrandose)}>
+  <Button style={{ width: "300px" }}
+          variant="secondary" onClick = {()=> setEstaRegistrandose(!estaRegistrandose)}>
     {estaRegistrandose ? "¿Ya tienes Cuenta? Inicia sesión" : "¿No tienes Cuenta? Regístrate"}
   </Button>
       </Stack>
