@@ -59,7 +59,7 @@ export const Home = ({correoUsuario}) => {
             Cerrar Sesión
         </Button>
         <hr/>
-        <AgregarTarea/>
+        <AgregarTarea arrayTareas = {arrayTareas} setArrayTareas={setArrayTareas} correoUsuario={correoUsuario}/>
         {
           arrayTareas ? (
         <ListadoTareas arrayTareas = {arrayTareas} setArrayTareas={setArrayTareas} correoUsuario={correoUsuario}/>
