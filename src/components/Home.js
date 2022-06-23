@@ -13,9 +13,8 @@ export const Home = ({correoUsuario}) => {
 
   const [arrayTareas, setArrayTareas] = useState(null);
   
-  const fakeData = [{id: 1, descripcion: "prueba1", tautor: "prueba1", talbum: "prueba1", tgenero:"prueba1", url:"https://picsum.photos/420"},
-  {id: 2, descripcion: "prueba1", tautor: "prueba1", talbum: "prueba1", tgenero:"prueba1", url:"https://picsum.photos/420"},
-  {id: 3, descripcion: "prueba1", tautor: "prueba1", talbum: "prueba1", tgenero:"prueba1", url:"https://picsum.photos/420"}
+  const fakeData = [
+  
 ];
 
    async function buscarDocuemntoOrCrearDocumento(idDocumento){

@@ -17,9 +17,9 @@ function App() {
       //codifo en caso de que no haya sesión inicada
       setUsuarioGlobal(null);
     }
-  })
+  });
   
-  return <>{usuarioGlobal ? <Home correoUsuario = {usuarioGlobal.email}/> : <Logueo/> }</>
+  return <>{usuarioGlobal ? ( <Home correoUsuario = {usuarioGlobal.email}/>) : ( <Logueo/> )}</>
 }
 
 export default App;
